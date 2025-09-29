@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        :root {
+            --bs-primary: #0d6efd;
+            --bs-secondary: #6c757d;
+            --bs-success: #198754;
+            --bs-info: #0dcaf0;
+            --bs-warning: #ffc107;
+            --bs-danger: #dc3545;
+            --bs-light: #f8f9fa;
+            --bs-dark: #212529;
+        }
+        
+        [data-bs-theme="dark"] {
+            --bs-body-bg: #111827;
+            --bs-body-color: #f8f9fa;
+            --bs-border-color: #374151;
+        }
+        
+        [data-bs-theme="light"] {
+            --bs-body-bg: #ffffff;
+            --bs-body-color: #212529;
+            --bs-border-color: #dee2e6;
+        }
+        
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            overflow-x: hidden;
+        }
+        
+        .bg-gradient-custom {
+            background: linear-gradient(135deg, #111827 0%, #1f2937 50%, #111827 100%);
+        }
+        
+        [data-bs-theme="light"] .bg-gradient-custom {
+            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 50%, #f1f5f9 100%);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .gradient-text-dark {
+            background: linear-gradient(135deg, #f8fafc, #e5e7eb, #d1d5db);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        [data-bs-theme="light"] .gradient-text-dark {
+            background: linear-gradient(135deg, #1f2937, #374151, #4b5563);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .gradient-bg-blue {
+            background: linear-gradient(135deg, #3b82f6, #06b6d4);
+        }
+        
+        .gradient-bg-purple {
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+        }
+        
+        .gradient-bg-green {
+            background: linear-gradient(135deg, #10b981, #059669);
+        }
+        
+        .gradient-bg-yellow {
+            background: linear-gradient(135deg, #eab308, #f97316);
+        }
+        
+        .gradient-bg-gray {
+            background: linear-gradient(135deg, #f8fafc, #e5e7eb);
+        }
+        
+        [data-bs-theme="light"] .gradient-bg-gray {
+            background: linear-gradient(135deg, #1f2937, #374151);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-gradient {
+            background: linear-gradient(135deg, #f8fafc, #e5e7eb);
+            color: #1f2937;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        
+        [data-bs-theme="light"] .btn-gradient {
+            background: linear-gradient(135deg, #1f2937, #374151);
+            color: white;
+        }
+        
+        .btn-gradient:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn-gradient-blue {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-gradient-blue:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.5);
+        }
+        
+        .nav-link.active {
+            font-weight: 600;
+            position: relative;
+        }
+        
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #f8fafc, #e5e7eb);
+        }
+        
+        [data-bs-theme="light"] .nav-link.active::after {
+            background: linear-gradient(135deg, #1f2937, #374151);
+        }
+        
+        .animated-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .bg-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.1;
+            animation: pulse 4s infinite;
+        }
+        
+        .bg-blob:nth-child(1) {
+            top: 5rem;
+            left: 2.5rem;
+            width: 18rem;
+            height: 18rem;
+            background: linear-gradient(135deg, #60a5fa, #a78bfa);
+        }
+        
+        .bg-blob:nth-child(2) {
+            bottom: 5rem;
+            right: 2.5rem;
+            width: 24rem;
+            height: 24rem;
+            background: linear-gradient(135deg, #34d399, #60a5fa);
+            animation-delay: 1s;
+        }
+        
+        .bg-blob:nth-child(3) {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20rem;
+            height: 20rem;
+            background: linear-gradient(135deg, #fbbf24, #f87171);
+            animation-delay: 2s;
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 0.1;
+            }
+            50% {
+                opacity: 0.2;
+            }
+        }
+        
+        .section-padding {
+            padding-top: 8rem;
+            padding-bottom: 8rem;
+        }
+        
+        .hero-title {
+            font-size: 4.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+        }
+        
+        @media (min-width: 768px) {
+            .hero-title {
+                font-size: 7rem;
+            }
+        }
+        
+        .feature-icon {
+            width: 4rem;
+            height: 4rem;
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1);
+        }
+        
+        .stat-number {
+            font-size: 2.25rem;
+            font-weight: 900;
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-item:hover .stat-number {
+            transform: scale(1.1);
+        }
+        
+        .badge-popular {
+            position: absolute;
+            top: -1rem;
+            left: 2rem;
+            background: linear-gradient(135deg, #fbbf24, #f97316);
+            color: black;
+            padding: 0.25rem 1rem;
+            border-radius: 1rem;
+            font-weight: 700;
+            font-size: 0.75rem;
+            z-index: 10;
+        }
+        
+        .form-control, .form-select {
+            padding: 0.75rem 1rem;
+            border-radius: 0.75rem;
+            border: 1px solid #4b5563;
+            transition: all 0.2s;
+            background-color: #374151;
+            color: #f9fafb;
+        }
+        
+        [data-bs-theme="light"] .form-control, 
+        [data-bs-theme="light"] .form-select {
+            background-color: white;
+            border-color: #d1d5db;
+            color: #1f2937;
+        }
+        
+        .form-control:focus, .form-select:focus {
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+            border-color: #3b82f6;
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+        
+        .theme-toggle {
+            padding: 0.625rem;
+            border-radius: 0.75rem;
+            background-color: #374151;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        
+        [data-bs-theme="light"] .theme-toggle {
+            background-color: #f3f4f6;
+        }
+        
+        .theme-toggle:hover {
+            transform: scale(1.1) rotate(12deg);
+        }
+        
+        .nav-scrolled {
+            background-color: rgba(17, 24, 39, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid #374151;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+        }
+        
+        [data-bs-theme="light"] .nav-scrolled {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-bottom: 1px solid #e5e7eb;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.125rem;
+        }
+        
+        .platform-tab.active {
+            background-color: #374151;
+            color: #f9fafb;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+        }
+        
+        [data-bs-theme="light"] .platform-tab.active {
+            background-color: white;
+            color: #1f2937;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Ajustes específicos para el tema oscuro */
+        .text-dark {
+            color: #f9fafb !important;
+        }
+        
+        [data-bs-theme="light"] .text-dark {
+            color: #1f2937 !important;
+        }
+        
+        .text-secondary {
+            color: #d1d5db !important;
+        }
+        
+        [data-bs-theme="light"] .text-secondary {
+            color: #6b7280 !important;
+        }
+        
+        .bg-white {
+            background-color: #1f2937 !important;
+        }
+        
+        [data-bs-theme="light"] .bg-white {
+            background-color: white !important;
+        }
+        
+        .bg-light {
+            background-color: #111827 !important;
+        }
+        
+        [data-bs-theme="light"] .bg-light {
+            background-color: #f8f9fa !important;
+        }
+        
+        .border-light {
+            border-color: #374151 !important;
+        }
+        
+        [data-bs-theme="light"] .border-light {
+            border-color: #e5e7eb !important;
+        }
+        
+        .card {
+            background-color: #1f2937;
+            border-color: #374151;
+        }
+        
+        [data-bs-theme="light"] .card {
+            background-color: white;
+            border-color: #e5e7eb;
+        }
+        
+        .btn-outline-secondary {
+            border-color: #4b5563;
+            color: #d1d5db;
+        }
+        
+        [data-bs-theme="light"] .btn-outline-secondary {
+            border-color: #6b7280;
+            color: #6b7280;
+        }
+        
+        .btn-outline-light {
+            border-color: #4b5563;
+            color: #d1d5db;
+        }
+        
+        [data-bs-theme="light"] .btn-outline-light {
+            border-color: #dee2e6;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+      <nav class="navbar navbar-expand-md fixed-top" id="navbar">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <div class="logo gradient-bg-gray me-2">
+                    <span class="text-">C</span>
+                </div>
+                <span class="fs-4 fw-bold gradient-text-dark">Credaris</span>
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto mb-2 mb-md-0">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="../index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="./Servicio.html">Servicios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#Contactos">Contactos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="./Sistema.html">Sistema</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="./SistemasDeRequerimientos.html">Requisitos</a>
+                    </li>
+                </ul>
+                
+                <div class="d-flex align-items-center ms-md-4">
+                    <button class="btn btn-gradient">Get Started</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+  <section id="contactos" class="section-padding bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-4 fw-bold text-white mb-4">
+                    Ponte en
+                    <span class="d-block gradient-text">Contacto</span>
+                </h2>
+                <p class="fs-5 text-white mx-auto" style="max-width: 600px;">
+                    Nuestro equipo de expertos está listo para ayudarte a transformar tu institución financiera
+                </p>
+            </div>
+            
+            <div class="row g-5">
+                <div class="col-lg-6">
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body p-4">
+                            <h3 class="card-title fw-bold text-white mb-4">Envíanos un Mensaje</h3>
+                            
+                            <form>
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="nombre" class="form-label text-white">Nombre Completo *</label>
+                                        <input type="text" class="form-control" id="nombre" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="email" class="form-label text-white">Email *</label>
+                                        <input type="email" class="form-control" id="email" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="empresa" class="form-label text-white">Empresa</label>
+                                        <input type="text" class="form-control" id="empresa">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="telefono" class="form-label text-white">Teléfono</label>
+                                        <input type="tel" class="form-control" id="telefono">
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="servicio" class="form-label text-white">Servicio de Interés</label>
+                                    <select class="form-select" id="servicio">
+                                        <option selected>Selecciona un servicio</option>
+                                        <option value="Implementacion">Implementar nuevas funcionalidades.</option>
+                                        <option value="Problemas">Problemas en el sistema.</option>
+                                        <option value="Dudas">Dudas de uso del programa.</option>
+                                        <option value="Configuacion">Configuración Personalizada</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <label for="mensaje" class="form-label text-white">Mensaje</label>
+                                    <textarea class="form-control" id="mensaje" rows="5" required></textarea>
+                                </div>
+                                
+                                <button type="submit" class="btn btn-gradient-blue w-100 d-flex align-items-center justify-content-center gap-2 py-3">
+                                    <i class="bi bi-send"></i>
+                                    <span>Enviar Mensaje</span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <h3 class="fw-bold text-white mb-4">Información de Contacto</h3>
+                    
+                    <div class="row g-4 mb-5">
+                        <div class="col-12">
+                            <div class="card card-hover border-0 shadow-sm">
+                                <div class="card-body p-4">
+                                    <div class="d-flex align-items-start">
+                                        <div class="feature-icon gradient-bg-blue me-3">
+                                            <i class="bi bi-telephone text-white"></i>
+                                        </div>
+                                        <div>
+                                            <h5 class="fw-bold text-white mb-2">Teléfono</h5>
+                                            <p class="text-white mb-1">+1 (555) 123-4567</p>
+                                            <p class="text-white">+1 (555) 987-6543</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-12">
+                            <div class="card card-hover border-0 shadow-sm">
+                                <div class="card-body p-4">
+                                    <div class="d-flex align-items-start">
+                                        <div class="feature-icon gradient-bg-purple me-3">
+                                            <i class="bi bi-envelope text-white"></i>
+                                        </div>
+                                        <div>
+                                            <h5 class="fw-bold text-white mb-2">Email</h5>
+                                            <p class="text-white mb-1">info@credaris.com</p>
+                                            <p class="text-white">soporte@credaris.com</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-12">
+                            <div class="card card-hover border-0 shadow-sm">
+                                <div class="card-body p-4">
+                                    <div class="d-flex align-items-start">
+                                        <div class="feature-icon gradient-bg-yellow me-3">
+                                            <i class="bi bi-clock text-white"></i>
+                                        </div>
+                                        <div>
+                                            <h5 class="fw-bold text-white mb-2">Horario de Atención</h5>
+                                            <p class="text-white mb-1">Lun - Vie: 8:00 AM - 8:00 PM</p>
+                                            <p class="text-white">Sáb: 9:00 AM - 5:00 PM</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

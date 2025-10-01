@@ -416,6 +416,34 @@
             border-color: #dee2e6;
             color: #6c757d;
         }
+
+ @keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.8s ease forwards;
+}
+
+/* Aplicar a las secciones principales */
+section {
+    opacity: 0;
+}
+
+section.fade-in {
+    opacity: 1;
+}
+
+section {
+    animation: fadeIn 0.8s ease forwards;
+}
     </style>
 </head>
 <body>
@@ -450,12 +478,16 @@
                         <a class="nav-link text-white" href="#Sistem">Sistema</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="./RequistiosDeSistema.html.html">Requisitos</a>
+                        <a class="nav-link text-white" href="./RequistiosDeSistema.html">Requisitos</a>
                     </li>
                 </ul>
                 
                 <div class="d-flex align-items-center ms-md-4">
                     <button class="btn btn-gradient">Get Started</button>
+                    <!-- Botón de toggle tema -->
+                    <button class="btn theme-toggle ms-2" id="themeToggle">
+                        <i class="bi bi-moon-fill"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -507,7 +539,7 @@
                             </div>
                             
                             <h3 class="card-title fw-bold text-white mb-2">Windows</h3>
-                            <p class="card-text text-white mb-4">Windows 10 o superior</p>
+                            <p class="card-text mb-4">Windows 10 o superior</p>
                             
                             <div class="d-flex align-items-center justify-content-between text-white small mb-4">
                                 <span class="d-flex align-items-center">
@@ -729,6 +761,36 @@
             </div>
         </div>
     </footer>
+
+  <script>
+    // Toggle theme
+    const themeToggle = document.getElementById('themeToggle');
+    const htmlElement = document.documentElement;
+
+    // Cargar tema guardado
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    htmlElement.setAttribute('data-bs-theme', savedTheme);
+    updateThemeIcon(savedTheme);
+
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = htmlElement.getAttribute('data-bs-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        htmlElement.setAttribute('data-bs-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateThemeIcon(newTheme);
+    });
+
+    function updateThemeIcon(theme) {
+        const icon = themeToggle.querySelector('i');
+        if (theme === 'dark') {
+            icon.classList.remove('bi-sun-fill');
+            icon.classList.add('bi-moon-fill');
+        } else {
+            icon.classList.remove('bi-moon-fill');
+            icon.classList.add('bi-sun-fill');
+        }
+    }
+</script>  
 
 </body>
 </html>

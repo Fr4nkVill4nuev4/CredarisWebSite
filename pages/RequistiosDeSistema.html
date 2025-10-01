@@ -417,6 +417,35 @@
             border-color: #dee2e6;
             color: #6c757d;
         }
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.8s ease forwards;
+}
+
+/* Aplicar a las secciones principales */
+section {
+    opacity: 0;
+}
+
+section.fade-in {
+    opacity: 1;
+}
+
+section {
+    animation: fadeIn 0.8s ease forwards;
+}
+        
 </style>
 <body>
     <nav class="navbar navbar-expand-md fixed-top" id="navbar">
@@ -453,6 +482,10 @@
                 
                 <div class="d-flex align-items-center ms-md-4">
                     <button class="btn btn-gradient">Get Started</button>
+                    <!-- Botón de toggle tema -->
+                    <button class="btn theme-toggle ms-2" id="themeToggle">
+                        <i class="bi bi-moon-fill"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -739,5 +772,35 @@
         </div>
     </footer>
     
+    <script>
+    // Toggle theme
+    const themeToggle = document.getElementById('themeToggle');
+    const htmlElement = document.documentElement;
+
+    // Cargar tema guardado
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    htmlElement.setAttribute('data-bs-theme', savedTheme);
+    updateThemeIcon(savedTheme);
+
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = htmlElement.getAttribute('data-bs-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        htmlElement.setAttribute('data-bs-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateThemeIcon(newTheme);
+    });
+
+    function updateThemeIcon(theme) {
+        const icon = themeToggle.querySelector('i');
+        if (theme === 'dark') {
+            icon.classList.remove('bi-sun-fill');
+            icon.classList.add('bi-moon-fill');
+        } else {
+            icon.classList.remove('bi-moon-fill');
+            icon.classList.add('bi-sun-fill');
+        }
+    }
+  </script>  
+
 </body>
 </html>

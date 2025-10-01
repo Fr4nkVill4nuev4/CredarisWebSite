@@ -416,6 +416,35 @@
             border-color: #dee2e6;
             color: #6c757d;
         }
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.8s ease forwards;
+}
+
+/* Aplicar a las secciones principales */
+section {
+    opacity: 0;
+}
+
+section.fade-in {
+    opacity: 1;
+}
+
+section {
+    animation: fadeIn 0.8s ease forwards;
+}
     </style>
 </head>
 <body>
@@ -445,12 +474,16 @@
                         <a class="nav-link" href="./pages/Sistema.html">Sistema</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./pages/SistemasDeRequerimientos.html">Requisitos</a>
+                        <a class="nav-link" href="./pages/RequistiosDeSistema.html">Requisitos</a>
                     </li>
                 </ul>
                 
                 <div class="d-flex align-items-center ms-md-4">
                     <button class="btn btn-gradient">Get Started</button>
+                    <!-- Botón de toggle tema -->
+                    <button class="btn theme-toggle ms-2" id="themeToggle">
+                        <i class="bi bi-moon-fill"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -472,7 +505,7 @@
                     <span class="fw-medium text-gray-300">Confiado por 200+ Instituciones Financieras</span>
                 </div>
                 
-                <h1 class="hero-title text-white mb-4">
+                <h1 class="hero-title mb-4">
                     <span class="d-block">Gestión de</span>
                     <span class="d-block gradient-text-dark">Préstamos</span>
                     <span class="d-block fs-1 gradient-text">Profesional</span>
@@ -489,7 +522,7 @@
                         <span>Descargar Prueba Gratuita</span>
                         <div class="bg-success rounded-circle" style="width: 8px; height: 8px;"></div>
                     </button>
-                    <button class="btn btn-outline-secondary d-flex align-items-center justify-content-center gap-3 px-5 py-3 fs-6">
+                    <button class="btn btn-outlined-flex align-items-center justify-content-center gap-3 px-5 py-3 fs-6">
                         <i class="bi bi-play-fill"></i>
                         <span>Ver Demo</span>
                     </button>
@@ -498,25 +531,25 @@
                 <div class="row g-4 justify-content-center">
                     <div class="col-6 col-md-3">
                         <div class="stat-item text-center">
-                            <div class="stat-number text-white">500K+</div>
+                            <div class="stat-number">500K+</div>
                             <div class="text-gray-400 fw-medium">Préstamos Procesados</div>
                         </div>
                     </div>
                     <div class="col-6 col-md-3">
                         <div class="stat-item text-center">
-                            <div class="stat-number text-white">99.9%</div>
+                            <div class="stat-number">99.9%</div>
                             <div class="text-gray-400 fw-medium">Tiempo Activo</div>
                         </div>
                     </div>
                     <div class="col-6 col-md-3">
                         <div class="stat-item text-center">
-                            <div class="stat-number text-white">200+</div>
+                            <div class="stat-number">200+</div>
                             <div class="text-gray-400 fw-medium">Instituciones Financieras</div>
                         </div>
                     </div>
                     <div class="col-6 col-md-3">
                         <div class="stat-item text-center">
-                            <div class="stat-number text-white">24/7</div>
+                            <div class="stat-number">24/7</div>
                             <div class="text-gray-400 fw-medium">Soporte</div>
                         </div>
                     </div>
@@ -550,7 +583,7 @@
     <section id="testimonials" class="section-padding bg-light">
         <div class="container">
             <div class="text-center mb-5">
-                <h2 class="display-4 fw-bold text-white mb-4">
+                <h2 class="display-4 fw-bold mb-4">
                     Amado por
                     <span class="d-block gradient-text">Líderes de la Industria</span>
                 </h2>
@@ -589,7 +622,7 @@
                 </div>
                 
                 <div class="col-md-4">
-                    <div class="card card-hover border-0 shadow-sm h-100">
+                    <div class="card  border-0 shadow-sm h-100">
                         <div class="card-body p-4">
                             <div class="d-flex align-items-center mb-4">
                                 <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop" 
@@ -731,5 +764,36 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+    // Toggle theme
+    const themeToggle = document.getElementById('themeToggle');
+    const htmlElement = document.documentElement;
+
+    // Cargar tema guardado
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    htmlElement.setAttribute('data-bs-theme', savedTheme);
+    updateThemeIcon(savedTheme);
+
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = htmlElement.getAttribute('data-bs-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        htmlElement.setAttribute('data-bs-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateThemeIcon(newTheme);
+    });
+
+    function updateThemeIcon(theme) {
+        const icon = themeToggle.querySelector('i');
+        if (theme === 'dark') {
+            icon.classList.remove('bi-sun-fill');
+            icon.classList.add('bi-moon-fill');
+        } else {
+            icon.classList.remove('bi-moon-fill');
+            icon.classList.add('bi-sun-fill');
+        }
+    }
+</script>
+
 </body>
 </html>

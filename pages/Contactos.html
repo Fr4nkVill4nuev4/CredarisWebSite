@@ -3,9 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Contactos - Credaris</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init("vUFH9pBhHztFoOzX8");
+        })();
+    </script>
     <style>
         :root {
             --bs-primary: #0d6efd;
@@ -300,10 +306,12 @@
             background-color: #374151;
             border: none;
             transition: all 0.3s ease;
+            color: #f8f9fa;
         }
         
         [data-bs-theme="light"] .theme-toggle {
             background-color: #f3f4f6;
+            color: #1f2937;
         }
         
         .theme-toggle:hover {
@@ -416,15 +424,148 @@
             border-color: #dee2e6;
             color: #6c757d;
         }
+
+        /* Estilos para el formulario y notificaciones */
+        .alert {
+            border-radius: 0.75rem;
+            border: none;
+        }
+        
+        .form-message {
+            display: none;
+            margin-top: 1rem;
+        }
+        
+        .btn-loading {
+            position: relative;
+            pointer-events: none;
+        }
+        
+        .btn-loading::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            border: 2px solid transparent;
+            border-top-color: #ffffff;
+            border-radius: 50%;
+            animation: button-loading-spinner 1s ease infinite;
+        }
+        
+        @keyframes button-loading-spinner {
+            from {
+                transform: rotate(0turn);
+            }
+            to {
+                transform: rotate(1turn);
+            }
+        }
+
+        /* Nuevas animaciones */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .typewriter {
+            overflow: hidden;
+            border-right: .15em solid #3b82f6;
+            white-space: nowrap;
+            margin: 0 auto;
+            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #3b82f6; }
+        }
+        
+        .slide-in-left {
+            transform: translateX(-100%);
+            opacity: 0;
+            transition: transform 0.8s ease, opacity 0.8s ease;
+        }
+        
+        .slide-in-left.visible {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        
+        .slide-in-right {
+            transform: translateX(100%);
+            opacity: 0;
+            transition: transform 0.8s ease, opacity 0.8s ease;
+        }
+        
+        .slide-in-right.visible {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        /* Aplicar a las secciones principales */
+        section {
+            opacity: 0;
+        }
+
+        section.fade-in {
+            opacity: 1;
+        }
+
+        section {
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        /* Corrección para el tema claro en el formulario */
+        [data-bs-theme="light"] .form-label,
+        [data-bs-theme="light"] .text-dark {
+            color: #1f2937 !important;
+        }
+
+        [data-bs-theme="light"] .bg-light {
+            background-color: #f8f9fa !important;
+        }
     </style>
 </head>
-<body>
-      <nav class="navbar navbar-expand-md fixed-top" id="navbar">
+<body data-bs-theme="dark">
+    <nav class="navbar navbar-expand-md fixed-top" id="navbar">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="#">
-                <a class="navbar-brand d-flex align-items-center" href="#">
-                    <img src="../images/Multimedia-removebg-preview.png" alt="multimedia" height="90px" width="90px">
-                </a>
+                <img src="../images/Multimedia-removebg-preview.png" alt="multimedia" height="90px" width="90px">
                 <span class="fs-4 fw-bold gradient-text-dark">Credaris</span>                                                                                                      
             </a>
             
@@ -441,25 +582,34 @@
                         <a class="nav-link text-white" href="./Servicio.html">Servicios</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="#Contactos">Contactos</a>
+                        <a class="nav-link text-white active" href="#Contactos">Contactos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="./Sistema.html">Sistema</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="./SistemasDeRequerimientos.html">Requisitos</a>
+                        <a class="nav-link text-white" href="./RequistiosDeSistema.html">Requisitos</a>
                     </li>
                 </ul>
                 
                 <div class="d-flex align-items-center ms-md-4">
                     <button class="btn btn-gradient">Get Started</button>
+                    <!-- Botón de toggle tema -->
+                    <button class="btn theme-toggle ms-2" id="themeToggle">
+                        <i class="bi bi-moon-fill"></i>
+                    </button>
                 </div>
             </div>
         </div>
     </nav>
-  <section id="contactos" class="section-padding bg-light">
+
+    <section id="contactos" class="section-padding bg-light fade-in">
         <div class="container">
             <div class="text-center mb-5">
+                <h2 class="display-4 fw-bold text-white mb-4">
+                    Contáctanos
+                    <span class="d-block gradient-text">Estamos aquí para ayudarte</span>
+                </h2>
                 <p class="fs-5 text-white mx-auto" style="max-width: 600px;">
                     Nuestro equipo de expertos está listo para ayudarte a transformar tu institución financiera
                 </p>
@@ -471,33 +621,35 @@
                         <div class="card-body p-4">
                             <h3 class="card-title fw-bold text-white mb-4">Envíanos un Mensaje</h3>
                             
-                            <form>
+                            <form id="contactForm">
                                 <div class="row mb-3">
                                     <div class="col-md-6">
                                         <label for="nombre" class="form-label text-white">Nombre Completo *</label>
-                                        <input type="text" class="form-control" id="nombre" required>
+                                        <input type="text" class="form-control" id="nombre" name="nombre" required>
+                                        <div class="invalid-feedback">Por favor ingresa tu nombre completo.</div>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="email" class="form-label text-white">Email *</label>
-                                        <input type="email" class="form-control" id="email" required>
+                                        <input type="email" class="form-control" id="email" name="email" required>
+                                        <div class="invalid-feedback">Por favor ingresa un email válido.</div>
                                     </div>
                                 </div>
                                 
                                 <div class="row mb-3">
                                     <div class="col-md-6">
                                         <label for="empresa" class="form-label text-white">Empresa</label>
-                                        <input type="text" class="form-control" id="empresa">
+                                        <input type="text" class="form-control" id="empresa" name="empresa">
                                     </div>
                                     <div class="col-md-6">
                                         <label for="telefono" class="form-label text-white">Teléfono</label>
-                                        <input type="tel" class="form-control" id="telefono">
+                                        <input type="tel" class="form-control" id="telefono" name="telefono">
                                     </div>
                                 </div>
                                 
                                 <div class="mb-3">
                                     <label for="servicio" class="form-label text-white">Servicio de Interés</label>
-                                    <select class="form-select" id="servicio">
-                                        <option selected>Selecciona un servicio</option>
+                                    <select class="form-select" id="servicio" name="servicio">
+                                        <option value="" selected>Selecciona un servicio</option>
                                         <option value="Implementacion">Implementar nuevas funcionalidades.</option>
                                         <option value="Problemas">Problemas en el sistema.</option>
                                         <option value="Dudas">Dudas de uso del programa.</option>
@@ -506,14 +658,26 @@
                                 </div>
                                 
                                 <div class="mb-4">
-                                    <label for="mensaje" class="form-label text-white">Mensaje</label>
-                                    <textarea class="form-control" id="mensaje" rows="5" required></textarea>
+                                    <label for="mensaje" class="form-label text-white">Mensaje *</label>
+                                    <textarea class="form-control" id="mensaje" name="mensaje" rows="5" required></textarea>
+                                    <div class="invalid-feedback">Por favor ingresa tu mensaje.</div>
                                 </div>
                                 
-                                <button type="submit" class="btn btn-gradient-blue w-100 d-flex align-items-center justify-content-center gap-2 py-3">
+                                <button type="submit" class="btn btn-gradient-blue w-100 d-flex align-items-center justify-content-center gap-2 py-3" id="submitButton">
                                     <i class="bi bi-send"></i>
                                     <span>Enviar Mensaje</span>
                                 </button>
+                                
+                                <!-- Mensajes de estado -->
+                                <div id="successMessage" class="form-message alert alert-success mt-3" role="alert">
+                                    <i class="bi bi-check-circle-fill me-2"></i>
+                                    <strong>¡Éxito!</strong> Tu mensaje ha sido enviado correctamente. Te contactaremos pronto.
+                                </div>
+                                
+                                <div id="errorMessage" class="form-message alert alert-danger mt-3" role="alert">
+                                    <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                                    <strong>Error:</strong> Ha ocurrido un problema al enviar tu mensaje. Por favor, inténtalo de nuevo.
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -574,102 +738,230 @@
                             </div>
                         </div>
                     </div>
-                </div>
 
                     <div class="row g-4 justify-content-center">
                         <h2 class="display-4 fw-bold text-white text-center mb-4">
-                            Ubicacion
-                            <span class="d-block gradient-text">de nuestras oficionas</span>
+                            Ubicación
+                            <span class="d-block gradient-text">de nuestras oficinas</span>
                         </h2>
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d685.1739281037246!2d-89.20353843963079!3d13.722745464275325!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2ssv!4v1759164548398!5m2!1ses!2ssv" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d685.1739281037246!2d-89.20353843963079!3d13.722745464275325!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2ssv!4v1759164548398!5m2!1ses!2ssv" width="100%" height="450" style="border:0; border-radius: 0.75rem;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
-
                 </div>
             </div>
         </div>
-  </section>
+    </section>
 
-  <footer class="py-5 bg-gray-900">
-    <div class="container">
-        <div class="row g-5 mb-5">
-            <div class="col-lg-5">
-                <div class="d-flex align-items-center mb-4">
-                    <div class="logo gradient-bg-gray me-3">
-                        <span class="text-gray-900">C</span>
+    <footer class="py-5 bg-gray-900">
+        <div class="container">
+            <div class="row g-5 mb-5">
+                <div class="col-lg-5">
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="logo gradient-bg-gray me-3">
+                            <span class="text-gray-900">C</span>
+                        </div>
+                        <span class="fs-3 fw-bold text-white">Credaris</span>
                     </div>
-                    <span class="fs-3 fw-bold text-white">Credaris</span>
-                </div>
-                <p class="text-gray-300 mb-4" style="max-width: 400px;">
-                    La próxima generación de software de gestión de préstamos. Construido para instituciones 
-                    financieras que exigen excelencia, seguridad y rendimiento.
-                </p>
-                <div class="d-flex gap-3">
-                    <a href="#" class="btn btn-outline-light btn-sm rounded">
-                        <i class="bi bi-whatsapp"></i>
-                    </a>
-                    <a href="#" class="btn btn-outline-light btn-sm rounded">
-                       <i class="bi bi-instagram"></i>
-                    </a>
-                    <a href="#" class="btn btn-outline-light btn-sm rounded">
-                        <i class="bi bi-envelope"></i>
-                    </a>
-                    <a href="#" class="btn btn-outline-light btn-sm rounded">
-                        <i class="bi bi-facebook"></i>
-                    </a>
-                </div>
-            </div>
-            
-            <div class="col-lg-2 col-md-4">
-                <h5 class="text-white fw-bold mb-4">Producto</h5>
-                <ul class="list-unstyled">
-                    <li class="mb-2"><a href="#" class="text-gray-300 text-decoration-none">Características</a></li>
-                    <li class="mb-2"><a href="#" class="text-gray-300 text-decoration-none">Servicios</a></li>
-                    <li class="mb-2"><a href="#" class="text-gray-300 text-decoration-none">Sistema</a></li>
-                    <li><a href="#" class="text-gray-300 text-decoration-none">Seguridad</a></li>
-                </ul>
-            </div>
-            
-            <div class="col-lg-2 col-md-4">
-                <h5 class="text-white fw-bold mb-4">Recursos</h5>
-                <ul class="list-unstyled">
-                    <li class="mb-2"><a href="#" class="text-gray-300 text-decoration-none">Documentación</a></li>
-                    <li class="mb-2"><a href="#" class="text-gray-300 text-decoration-none">API Reference</a></li>
-                    <li class="mb-2"><a href="#" class="text-gray-300 text-decoration-none">Tutoriales</a></li>
-                    <li><a href="#" class="text-gray-300 text-decoration-none">Blog</a></li>
-                </ul>
-            </div>
-            
-            <div class="col-lg-2 col-md-4">
-                <h5 class="text-white fw-bold mb-4">Empresa</h5>
-                <ul class="list-unstyled">
-                    <li class="mb-2"><a href="#" class="text-gray-300 text-decoration-none">Acerca de</a></li>
-                    <li class="mb-2"><a href="#" class="text-gray-300 text-decoration-none">Contactos</a></li>
-                    <li class="mb-2"><a href="#" class="text-gray-300 text-decoration-none">Privacidad</a></li>
-                    <li><a href="#" class="text-gray-300 text-decoration-none">Términos</a></li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="border-top border-gray-700 pt-4">
-            <div class="row align-items-center">
-                <div class="col-md-6">
-                    <p class="text-gray-300 mb-3 mb-md-0">
-                        © 2025 Credaris. Todos los derechos reservados. Construido con ❤️ para profesionales financieros.
+                    <p class="text-gray-300 mb-4" style="max-width: 400px;">
+                        La próxima generación de software de gestión de préstamos. Construido para instituciones 
+                        financieras que exigen excelencia, seguridad y rendimiento.
                     </p>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="btn btn-outline-light btn-sm rounded">
+                            <i class="bi bi-whatsapp"></i>
+                        </a>
+                        <a href="#" class="btn btn-outline-light btn-sm rounded">
+                           <i class="bi bi-instagram"></i>
+                        </a>
+                        <a href="#" class="btn btn-outline-light btn-sm rounded">
+                            <i class="bi bi-envelope"></i>
+                        </a>
+                        <a href="#" class="btn btn-outline-light btn-sm rounded">
+                            <i class="bi bi-facebook"></i>
+                        </a>
+                    </div>
                 </div>
-                <div class="col-md-6 text-md-end">
-                    <div class="d-flex align-items-center justify-content-md-end gap-4 text-gray-400 small">
-                        <span>Versión 3.2.1</span>
-                        <div class="d-flex align-items-center gap-2">
-                            <div class="bg-success rounded-circle" style="width: 8px; height: 8px;"></div>
-                            <span>Todos los sistemas operativos</span>
+                
+                <div class="col-lg-2 col-md-4">
+                    <h5 class="text-white fw-bold mb-4">Producto</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-gray-300 text-decoration-none">Características</a></li>
+                        <li class="mb-2"><a href="#" class="text-gray-300 text-decoration-none">Servicios</a></li>
+                        <li class="mb-2"><a href="#" class="text-gray-300 text-decoration-none">Sistema</a></li>
+                        <li><a href="#" class="text-gray-300 text-decoration-none">Seguridad</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2 col-md-4">
+                    <h5 class="text-white fw-bold mb-4">Recursos</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-gray-300 text-decoration-none">Documentación</a></li>
+                        <li class="mb-2"><a href="#" class="text-gray-300 text-decoration-none">API Reference</a></li>
+                        <li class="mb-2"><a href="#" class="text-gray-300 text-decoration-none">Tutoriales</a></li>
+                        <li><a href="#" class="text-gray-300 text-decoration-none">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2 col-md-4">
+                    <h5 class="text-white fw-bold mb-4">Empresa</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-gray-300 text-decoration-none">Acerca de</a></li>
+                        <li class="mb-2"><a href="#" class="text-gray-300 text-decoration-none">Contactos</a></li>
+                        <li class="mb-2"><a href="#" class="text-gray-300 text-decoration-none">Privacidad</a></li>
+                        <li><a href="#" class="text-gray-300 text-decoration-none">Términos</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-top border-gray-700 pt-4">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <p class="text-gray-300 mb-3 mb-md-0">
+                            © 2025 Credaris. Todos los derechos reservados. Construido con ❤️ para profesionales financieros.
+                        </p>
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                        <div class="d-flex align-items-center justify-content-md-end gap-4 text-gray-400 small">
+                            <span>Versión 3.2.1</span>
+                            <div class="d-flex align-items-center gap-2">
+                                <div class="bg-success rounded-circle" style="width: 8px; height: 8px;"></div>
+                                <span>Todos los sistemas operativos</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-  </footer>
-  
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Toggle theme
+        const themeToggle = document.getElementById('themeToggle');
+        const htmlElement = document.documentElement;
+
+        // Cargar tema guardado
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        htmlElement.setAttribute('data-bs-theme', savedTheme);
+        updateThemeIcon(savedTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-bs-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            htmlElement.setAttribute('data-bs-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+
+        function updateThemeIcon(theme) {
+            const icon = themeToggle.querySelector('i');
+            if (theme === 'dark') {
+                icon.classList.remove('bi-sun-fill');
+                icon.classList.add('bi-moon-fill');
+            } else {
+                icon.classList.remove('bi-moon-fill');
+                icon.classList.add('bi-sun-fill');
+            }
+        }
+
+        // Animaciones al hacer scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        
+        // Observar elementos con clase fade-in, slide-in-left, slide-in-right
+        document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Navegación suave
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Efecto de navbar al hacer scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('nav-scrolled');
+            } else {
+                navbar.classList.remove('nav-scrolled');
+            }
+        });
+
+        // Funcionalidad del formulario
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Validación del formulario
+            if (!this.checkValidity()) {
+                e.stopPropagation();
+                this.classList.add('was-validated');
+                return;
+            }
+            
+            // Obtener los datos del formulario
+            const formData = {
+                nombre: document.getElementById('nombre').value,
+                email: document.getElementById('email').value,
+                empresa: document.getElementById('empresa').value,
+                telefono: document.getElementById('telefono').value,
+                servicio: document.getElementById('servicio').value,
+                mensaje: document.getElementById('mensaje').value
+            };
+            
+            // Mostrar estado de carga
+            const submitButton = document.getElementById('submitButton');
+            submitButton.classList.add('btn-loading');
+            submitButton.disabled = true;
+            
+            // Ocultar mensajes previos
+            document.getElementById('successMessage').style.display = 'none';
+            document.getElementById('errorMessage').style.display = 'none';
+            
+            // Enviar el formulario usando EmailJS
+            emailjs.send('service_lwoz0c5', 'template_2isn4lq', formData)
+                .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    
+                    // Mostrar mensaje de éxito
+                    document.getElementById('successMessage').style.display = 'block';
+                    
+                    // Limpiar formulario
+                    document.getElementById('contactForm').reset();
+                    document.getElementById('contactForm').classList.remove('was-validated');
+                    
+                    // Restaurar botón
+                    submitButton.classList.remove('btn-loading');
+                    submitButton.disabled = false;
+                }, function(error) {
+                    console.log('FAILED...', error);
+                    
+                    // Mostrar mensaje de error
+                    document.getElementById('errorMessage').style.display = 'block';
+                    
+                    // Restaurar botón
+                    submitButton.classList.remove('btn-loading');
+                    submitButton.disabled = false;
+                });
+        });
+    </script>
 </body>
-</html> 
+</html>

@@ -418,6 +418,35 @@
             border-color: #dee2e6;
             color: #6c757d;
         }
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.8s ease forwards;
+}
+
+/* Aplicar a las secciones principales */
+section {
+    opacity: 0;
+}
+
+section.fade-in {
+    opacity: 1;
+}
+
+section {
+    animation: fadeIn 0.8s ease forwards;
+}
+
     </style>
 </head>
 <body>
@@ -433,24 +462,28 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto mb-2 mb-md-0">
                     <li class="nav-item">
-                        <a class="nav-link active text-white" href="../index.html">Home</a>
+                        <a class="nav-link active" href="../index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="#Servicios">Servicios</a>
+                        <a class="nav-link" href="#Servicios">Servicios</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="./Contactos.html">Contactos</a>
+                        <a class="nav-link" href="./Contactos.html">Contactos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="./Sistema.html">Sistema</a>
+                        <a class="nav-link" href="./Sistema.html">Sistema</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="./SistemasDeRequerimientos.html">Requisitos</a>
+                        <a class="nav-link" href="./RequistiosDeSistema.html">Requisitos</a>
                     </li>
                 </ul>
                 
                 <div class="d-flex align-items-center ms-md-4">
                     <button class="btn btn-gradient">Get Started</button>
+                    <!-- Botón de toggle tema -->
+                    <button class="btn theme-toggle ms-2" id="themeToggle">
+                        <i class="bi bi-moon-fill"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -458,11 +491,11 @@
     <section id="servicios" class="section-padding bg-white">
         <div class="container">
             <div class="text-center mb-5">
-                <h2 class="display-4 fw-bold text-white mb-4">
+                <h2 class="display-4 fw-bold mb-4">
                     Nuestros
                     <span class="d-block gradient-text">Servicios</span>
                 </h2>
-                <p class="fs-5 text-white mx-auto" style="max-width: 600px;">
+                <p class="fs-5 mx-auto" style="max-width: 600px;">
                     Servicios especializados diseñados para transformar tu operación financiera
                 </p>
             </div>
@@ -474,8 +507,8 @@
                             <div class="feature-icon gradient-bg-blue mb-4">
                                 <i class="bi bi-chat-right"></i>
                             </div>
-                            <h3 class="card-title fw-bold text-white mb-3">Consultorías privadas:</h3>
-                            <p class="card-text text-white mb-4">
+                            <h3 class="card-title fw-bold mb-3">Consultorías privadas:</h3>
+                            <p class="card-text mb-4">
                                 Ofrecemos consultorías personalizadas para empresas que desean maximizar el uso de nuestra aplicación, brindando asesoría experta y soluciones a medida para optimizar la gestión de préstamos y procesos relacionados.
                             </p>
                         </div>
@@ -488,8 +521,8 @@
                             <div class="feature-icon gradient-bg-purple mb-4">
                                 <i class="bi bi-patch-question-fill"></i>
                             </div>
-                            <h3 class="card-title fw-bold text-white mb-3">Ayuda al cliente:</h3>
-                            <p class="card-text text-white mb-4">
+                            <h3 class="card-title fw-bold mb-3">Ayuda al cliente:</h3>
+                            <p class="card-text mb-4">
                                 Contamos con un servicio de atención al cliente dedicado y accesible, que ofrece soporte rápido y efectivo para resolver dudas, facilitar el uso de la plataforma y asegurar una experiencia satisfactoria.
                             </p>
                         </div>
@@ -502,8 +535,8 @@
                             <div class="feature-icon gradient-bg-purple mb-4">
                                 <i class="bi bi-server"></i>
                             </div>
-                            <h3 class="card-title fw-bold text-white mb-3">Otras características:</h3>
-                            <p class="card-text text-white mb-4">
+                            <h3 class="card-title fw-bold mb-3">Otras características:</h3>
+                            <p class="card-text mb-4">
                                Además, la plataforma incorpora herramientas complementarias que mejoran la usabilidad y adaptabilidad del sistema, garantizando una gestión integral y eficiente acorde a las necesidades específicas de cada empresa.
                             </p>
                         </div>
@@ -594,6 +627,36 @@
             </div>
         </div>
     </footer>
+
+    <script>
+    // Toggle theme
+    const themeToggle = document.getElementById('themeToggle');
+    const htmlElement = document.documentElement;
+
+    // Cargar tema guardado
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    htmlElement.setAttribute('data-bs-theme', savedTheme);
+    updateThemeIcon(savedTheme);
+
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = htmlElement.getAttribute('data-bs-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        htmlElement.setAttribute('data-bs-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateThemeIcon(newTheme);
+    });
+
+    function updateThemeIcon(theme) {
+        const icon = themeToggle.querySelector('i');
+        if (theme === 'dark') {
+            icon.classList.remove('bi-sun-fill');
+            icon.classList.add('bi-moon-fill');
+        } else {
+            icon.classList.remove('bi-moon-fill');
+            icon.classList.add('bi-sun-fill');
+        }
+    }
+  </script>  
 
 </body>
 </html>

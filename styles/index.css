@@ -8,23 +8,6 @@
             --bs-light: #f8f9fa;
             --bs-dark: #212529;
         }
-        
-
-
-.rasgado-vintage {
-  
-}
-
-.rasgado-vintage::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  
-  opacity: 0.3;
-  mix-blend-mode: multiply;
-  pointer-events: none;
-}
-
         /* Correcciones para navbar responsive */
 .navbar-collapse {
     transition: all 0.3s ease;
@@ -82,7 +65,51 @@
 }
 
 /* Mejoras responsive para elementos del navbar */
-@media (max-width: 768px) {
+@media (max-width: 868px) {
+    .navbar-nav {
+        padding: 1rem 0;
+        text-align: center;
+    }
+    
+    .nav-item {
+        margin: 0.5rem 0;
+    }
+    
+    .d-flex.align-items-center.ms-md-4 {
+        justify-content: center;
+        margin-top: 1rem;
+        margin-left: 0 !important;
+    }
+    
+    .navbar-brand img {
+        height: 70px;
+        width: 70px;
+    }
+}
+
+@media (max-width: 560px) {
+    .navbar-nav {
+        padding: 1rem 0;
+        text-align: center;
+    }
+    
+    .nav-item {
+        margin: 0.5rem 0;
+    }
+    
+    .d-flex.align-items-center.ms-md-4 {
+        justify-content: center;
+        margin-top: 1rem;
+        margin-left: 0 !important;
+    }
+    
+    .navbar-brand img {
+        height: 70px;
+        width: 70px;
+    }
+}
+
+@media (max-width: 268px) {
     .navbar-nav {
         padding: 1rem 0;
         text-align: center;

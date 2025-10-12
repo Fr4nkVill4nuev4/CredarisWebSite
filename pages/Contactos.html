@@ -305,6 +305,24 @@
             updateThemeIcon(newTheme);
         });
 
+        let lastScrollTop = 0;
+const navbar = document.getElementById('navbar');
+const navbarHeight = navbar.offsetHeight;
+
+window.addEventListener('scroll', function() {
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (scrollTop > lastScrollTop && scrollTop > navbarHeight) {
+        // Scroll hacia abajo y no en la parte superior
+        navbar.style.transform = 'translateY(-100%)';
+    } else {
+        // Scroll hacia arriba
+        navbar.style.transform = 'translateY(0)';
+    }
+
+    lastScrollTop = scrollTop;
+});
+
         function updateThemeIcon(theme) {
             const icon = themeToggle.querySelector('i');
             if (theme === 'dark') {

@@ -342,6 +342,47 @@
         updateThemeIcon(newTheme);
     });
 
+    let lastScrollTop = 0;
+    const navbar = document.getElementById('navbar');
+    const navbarHeight = navbar.offsetHeight;
+
+    window.addEventListener('scroll', function() {
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (scrollTop > lastScrollTop && scrollTop > navbarHeight) {
+            // Scroll hacia abajo
+            navbar.classList.remove('navbar-visible');
+            navbar.classList.add('navbar-hidden');
+        } else {
+            // Scroll hacia arriba
+            navbar.classList.remove('navbar-hidden');
+            navbar.classList.add('navbar-visible');
+            
+            // Añadir efecto de sombra cuando se hace scroll
+            if (scrollTop > 50) {
+                navbar.classList.add('nav-scrolled');
+            } else {
+                navbar.classList.remove('nav-scrolled');
+            }
+        }
+        
+        lastScrollTop = scrollTop;
+    });
+
+    // Animación para elementos al hacer scroll
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, observerOptions);
+    
     function updateThemeIcon(theme) {
         const icon = themeToggle.querySelector('i');
         if (theme === 'dark') {

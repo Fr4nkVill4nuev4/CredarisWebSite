@@ -118,7 +118,7 @@
             </p>
                 <button onclick="DownloadManuals('ManualUsuario')" class="btn btn-gradient-blue w-25 d-flex align-items-center justify-content-center d-grid gap-2 col-6 mx-auto py-3">
                      <i class="bi bi-download"></i>
-                    <span>Descargar</span>
+                    <span>Ver</span>
                 </button>
             </div>
         </div>
@@ -139,7 +139,7 @@
             </p>
                 <button onclick="DownloadManuals('ManualTecnico')" class="DescargarManualTecnico btn btn-gradient-blue w-25 d-flex align-items-center justify-content-center d-grid gap-2 col-6 mx-auto py-3">
                      <i class="bi bi-download"></i>
-                    <span>Descargar</span>
+                    <span>Ver</span>
                 </button>
             </div>
         </div>
@@ -246,6 +246,47 @@
         updateThemeIcon(newTheme);
     });
 
+    let lastScrollTop = 0;
+    const navbar = document.getElementById('navbar');
+    const navbarHeight = navbar.offsetHeight;
+
+    window.addEventListener('scroll', function() {
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (scrollTop > lastScrollTop && scrollTop > navbarHeight) {
+            // Scroll hacia abajo
+            navbar.classList.remove('navbar-visible');
+            navbar.classList.add('navbar-hidden');
+        } else {
+            // Scroll hacia arriba
+            navbar.classList.remove('navbar-hidden');
+            navbar.classList.add('navbar-visible');
+            
+            // Añadir efecto de sombra cuando se hace scroll
+            if (scrollTop > 50) {
+                navbar.classList.add('nav-scrolled');
+            } else {
+                navbar.classList.remove('nav-scrolled');
+            }
+        }
+        
+        lastScrollTop = scrollTop;
+    });
+
+    // Animación para elementos al hacer scroll
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, observerOptions);
+    
     function updateThemeIcon(theme) {
         const icon = themeToggle.querySelector('i');
         if (theme === 'dark') {
@@ -259,7 +300,7 @@
 
     function DownloadManuals(value) {
       const link = document.createElement('a');
-        link.href = value === "ManualTecnico" ? '../assets/documents/ManualTecnico.pdf' : '../assets/documents/diagrama.pdf' // Ruta al archivo PDF
+        link.href = value === "ManualTecnico" ? '../assets/documents/ManualTecnico.pdf' : '../assets/documents/ManualDeUsuario.pdf' // Ruta al archivo PDF
         link.download = value === 'ManualTecnico.pdf'; // Nombre sugerido para la descarga
         document.body.appendChild(link);
         link.click();

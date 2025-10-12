@@ -1,0 +1,27 @@
+DASHBOARD
+1- no es navegable  en celular   ✅
+2-  Quitar descargar prueba gratuita ✅
+3-quitar ver demo ✅
+4- arreglar los comentario de "gente " ✅
+5-arregral el footer , quitar , productos , recursos, empresa ✅
+6-poner las redes sociales que te llevan anuestras redes sociales de verdad pedir las redes sociales a "LEO" no poner redes que no son
+
+
+SERVICIOS
+1-arreglar la redacion de cada aprtado ✅
+2- arreglar el footer ✅
+
+CONTACTO
+1-que el enviar correo sea real no se si sirve que funcione hace el correo de credaris el correo de la empresa ✅
+2- que sea informacion real ✅
+3- arreglar footer ✅
+
+SISTEMA
+1-quitar soluciones empresariales ✅
+2- quitar documentacion API ✅
+3-quitar todo lo que diga pureba gratuita ✅
+4-y hacer que se pueda descargar la app desde la pagina (ni yo se como se hace pero hay que hablar eso todos ) ❌
+5-arreglar footer ✅
+
+REQUISITOS
+1- solo arreglar el footer ✅

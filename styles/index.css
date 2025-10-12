@@ -87,7 +87,20 @@
     }
 }
 
-@media (max-width: 560px) {
+@media (max-width: 992px) {
+  .navbar-collapse {
+        background-color: rgba(17, 24, 39, 0.95);
+        backdrop-filter: blur(20px);
+        padding: 1rem;
+        border-radius: 0.5rem;
+        margin-top: 1rem;
+        text-align: center;
+    }
+
+    [data-bs-theme="light"] .navbar-collapse {
+        background-color: rgba(255, 255, 255, 0.95);
+    }
+
     .navbar-nav {
         padding: 1rem 0;
         text-align: center;
@@ -109,27 +122,6 @@
     }
 }
 
-@media (max-width: 268px) {
-    .navbar-nav {
-        padding: 1rem 0;
-        text-align: center;
-    }
-    
-    .nav-item {
-        margin: 0.5rem 0;
-    }
-    
-    .d-flex.align-items-center.ms-md-4 {
-        justify-content: center;
-        margin-top: 1rem;
-        margin-left: 0 !important;
-    }
-    
-    .navbar-brand img {
-        height: 70px;
-        width: 70px;
-    }
-}
         /* Corrección para el tema claro en el navbar */
 [data-bs-theme="light"] .navbar-toggler {
     border-color: rgba(0, 0, 0, 0.1);
@@ -137,7 +129,6 @@
 
 [data-bs-theme="light"] .navbar-toggler-icon {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-    
 }
         
         body {
@@ -663,3 +654,123 @@
         [data-bs-theme="light"] .bg-light {
             background-color: #f8f9fa !important;
         }
+
+        .navbar-collapse.collapsing,
+.navbar-collapse.show {
+    background-color: rgba(17, 24, 39, 0.98);
+    backdrop-filter: blur(20px);
+    padding: 1rem;
+    margin-top: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid #374151;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+}
+
+[data-bs-theme="light"] .navbar-collapse.collapsing,
+[data-bs-theme="light"] .navbar-collapse.show {
+    background-color: rgba(255, 255, 255, 0.98);
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* Navbar items en móviles */
+@media (max-width: 768px) {
+    .navbar-nav {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+    
+    .nav-item {
+        margin: 0.5rem 0;
+        width: 100%;
+    }
+    
+    .nav-link {
+        padding: 0.75rem 1rem !important;
+        border-radius: 0.5rem;
+        transition: all 0.3s ease;
+        display: block;
+        width: 100%;
+    }
+    
+    .nav-link:hover,
+    .nav-link.active {
+        background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+        color: white !important;
+        transform: translateX(5px);
+    }
+    
+    .nav-link.active::after {
+        display: none;
+    }
+    
+    /* Contenedor de botones en móviles */
+    .navbar-collapse .d-flex.align-items-center.ms-md-4 {
+        flex-direction: column;
+        width: 100%;
+        margin-left: 0 !important;
+        padding-top: 1rem;
+        border-top: 1px solid #374151;
+    }
+    
+    [data-bs-theme="light"] .navbar-collapse .d-flex.align-items-center.ms-md-4 {
+        border-top: 1px solid #e5e7eb;
+    }
+    
+    .navbar-collapse .btn {
+        width: 100%;
+        margin-bottom: 0.5rem;
+        justify-content: center;
+    }
+    
+    .navbar-collapse .theme-toggle {
+        width: auto;
+        align-self: center;
+    }
+    
+    /* Ajustes específicos para el navbar brand */
+    .navbar-brand {
+        margin-right: auto;
+    }
+    
+    .navbar-toggler {
+        margin-left: auto;
+        order: 2;
+    }
+}
+
+/* Corrección para evitar desbordamiento en navbar */
+.navbar {
+    min-height: 80px;
+}
+
+.navbar .container {
+    flex-wrap: wrap;
+}
+
+/* Mejoras visuales para el tema toggle en móviles */
+@media (max-width: 768px) {
+    .theme-toggle {
+        width: 45px;
+        height: 45px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50% !important;
+    }
+}
+
+/* Asegurar que el navbar se comporte correctamente al hacer scroll */
+.navbar-hidden {
+    transform: translateY(-100%);
+}
+
+.navbar-visible {
+    transform: translateY(0);
+}
+
+/* Animación suave para el navbar */
+.navbar {
+    transition: all 0.3s ease-in-out;
+}

@@ -9,42 +9,39 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../styles/index.css">
 
-    <script src="./Requisitos.js">{}</script>
-
 </head>
 <body>
     <nav class="navbar navbar-expand-md fixed-top" id="navbar">
-        <div class="container">
-            <a class="navbar-brand d-flex align-items-center" href="#">
-                <a class="navbar-brand d-flex align-items-center" href="#">
+        
+        <div class="container">   
+                <a  class="navbar-brand d-flex align-items-center" href="../index.html">
                     <img src="../images/Multimedia-removebg-preview.png" alt="multimedia" height="90px" width="90px">
-                </a>
-            </a>
-            
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                </a>    
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             
-            <div class="collapse navbar-collapse" id="navbarNav">
+             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto mb-2 mb-md-0">
                     <li class="nav-item">
-                        <a class="nav-link gradient-text-dark" href="../index.html">Home</a>
+                        <a class="nav-link" href="../index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link gradient-text-dark" href="./Servicio.html">Servicios</a>
+                        <a class="nav-link" href="./Servicio.html">Servicios</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link gradient-text-dark" href="./Contactos.html">Contactos</a>
+                        <a class="nav-link" href="./Contactos.html">Contactos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link gradient-text-dark" href="./Sistema.html">Sistema</a>
+                        <a class="nav-link" href="./Sistema.html">Sistema</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link gradient-text-dark active" href="#Requisitos">Requisitos</a>
+                        <a class="nav-link active" href="./RequistiosDeSistema.html">Requisitos</a>
                     </li>
                 </ul>
                 
-                <div class="d-flex align-items-center ms-md-4">
+                <div class="d-flex align-items-center ms-lg-4">
                     <button class="btn btn-gradient">Empezar</button>
                     <!-- Botón de toggle tema -->
                     <button class="btn theme-toggle ms-2" id="themeToggle">
@@ -54,7 +51,13 @@
             </div>
         </div>
     </nav>
-    <section id="System Requirements"class="section-padding bg-light">
+    <section id="System Requirements"class="section-padding position-relative bg-gradient-custom">
+        <div class="animated-bg">
+            <div class="bg-blob"></div>
+            <div class="bg-blob"></div>
+            <div class="bg-blob"></div>
+        </div>
+        
         <div class="container">
             <div class="text-center mb-5">
                 <h2 class="display-4 fw-bold mb-4">
@@ -150,59 +153,22 @@
             <div class="row g-5 mb-5">
                 <div class="col-lg-5">
                     <div class="d-flex align-items-center mb-4">
-                        <div class="logo gradient-bg-gray me-3">
-                            <span class="text-gray-900">C</span>
+                        <div class="logo me-3">
+                            <img src="../images/Multimedia-removebg-preview.png" alt="credaris" height="100px" width="100px">
                         </div>
-                        <span class="fs-3 fw-bold text-white">Credaris</span>
                     </div>
                     <p class="text-gray-300 mb-4" style="max-width: 400px;">
                         La próxima generación de software de gestión de préstamos. Construido para instituciones 
                         financieras que exigen excelencia, seguridad y rendimiento.
                     </p>
                     <div class="d-flex gap-3">
-                        <a href="#" class="btn btn-outline-light btn-sm rounded">
-                            <i class="bi bi-whatsapp"></i>
-                        </a>
-                        <a href="#" class="btn btn-outline-light btn-sm rounded">
+                        <a href="https://www.instagram.com/credaris__?utm_source=qr&igsh=MXBqM2xxcjM2N2FuMQ%3D%3D" class="btn btn-outline-light btn-sm rounded">
                            <i class="bi bi-instagram"></i>
                         </a>
                         <a href="#" class="btn btn-outline-light btn-sm rounded">
                             <i class="bi bi-envelope"></i>
                         </a>
-                        <a href="#" class="btn btn-outline-light btn-sm rounded">
-                            <i class="bi bi-facebook"></i>
-                        </a>
                     </div>
-                </div>
-                
-                <div class="col-lg-2 col-md-4">
-                    <h5 class="gradient-text-dark fw-bold mb-4">Producto</h5>
-                    <ul class="list-unstyled">
-                        <li class="mb-2"><a href="#" class="text-gray-300 text-decoration-none">Características</a></li>
-                        <li class="mb-2"><a href="#" class="text-gray-300 text-decoration-none">Servicios</a></li>
-                        <li class="mb-2"><a href="#" class="text-gray-300 text-decoration-none">Sistema</a></li>
-                        <li><a href="#" class="text-gray-300 text-decoration-none">Seguridad</a></li>
-                    </ul>
-                </div>
-                
-                <div class="col-lg-2 col-md-4">
-                    <h5 class="gradient-text-dark fw-bold mb-4">Recursos</h5>
-                    <ul class="list-unstyled">
-                        <li class="mb-2"><a href="#" class="text-gray-300 text-decoration-none">Documentación</a></li>
-                        <li class="mb-2"><a href="#" class="text-gray-300 text-decoration-none">API Reference</a></li>
-                        <li class="mb-2"><a href="#" class="text-gray-300 text-decoration-none">Tutoriales</a></li>
-                        <li><a href="#" class="text-gray-300 text-decoration-none">Blog</a></li>
-                    </ul>
-                </div>
-                
-                <div class="col-lg-2 col-md-4">
-                    <h5 class="gradient-text-dark fw-bold mb-4">Empresa</h5>
-                    <ul class="list-unstyled">
-                        <li class="mb-2"><a href="#" class="text-gray-300 text-decoration-none">Acerca de</a></li>
-                        <li class="mb-2"><a href="#" class="text-gray-300 text-decoration-none">Contactos</a></li>
-                        <li class="mb-2"><a href="#" class="text-gray-300 text-decoration-none">Privacidad</a></li>
-                        <li><a href="#" class="text-gray-300 text-decoration-none">Términos</a></li>
-                    </ul>
                 </div>
             </div>
             
@@ -227,65 +193,67 @@
         </div>
     </footer>
     
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     
+
 <script>
     // Toggle theme
-    const themeToggle = document.getElementById('themeToggle');
-    const htmlElement = document.documentElement;
+   const themeToggle = document.getElementById('themeToggle');
+        const htmlElement = document.documentElement;
 
-    // Cargar tema guardado
-    const savedTheme = localStorage.getItem('theme') || 'dark';
-    htmlElement.setAttribute('data-bs-theme', savedTheme);
-    updateThemeIcon(savedTheme);
+        // Cargar tema guardado
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        htmlElement.setAttribute('data-bs-theme', savedTheme);
+        updateThemeIcon(savedTheme);
 
-    themeToggle.addEventListener('click', () => {
-        const currentTheme = htmlElement.getAttribute('data-bs-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        htmlElement.setAttribute('data-bs-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-        updateThemeIcon(newTheme);
-    });
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-bs-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            htmlElement.setAttribute('data-bs-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
 
-    let lastScrollTop = 0;
-    const navbar = document.getElementById('navbar');
-    const navbarHeight = navbar.offsetHeight;
+let lastScrollTop = 0;
+        const navbar = document.getElementById('navbar');
+        const navbarHeight = navbar.offsetHeight;
 
-    window.addEventListener('scroll', function() {
-        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        
-        if (scrollTop > lastScrollTop && scrollTop > navbarHeight) {
-            // Scroll hacia abajo
-            navbar.classList.remove('navbar-visible');
-            navbar.classList.add('navbar-hidden');
-        } else {
-            // Scroll hacia arriba
-            navbar.classList.remove('navbar-hidden');
-            navbar.classList.add('navbar-visible');
+        window.addEventListener('scroll', function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
             
-            // Añadir efecto de sombra cuando se hace scroll
-            if (scrollTop > 50) {
-                navbar.classList.add('nav-scrolled');
+            if (scrollTop > lastScrollTop && scrollTop > navbarHeight) {
+                // Scroll hacia abajo
+                navbar.classList.remove('navbar-visible');
+                navbar.classList.add('navbar-hidden');
             } else {
-                navbar.classList.remove('nav-scrolled');
+                // Scroll hacia arriba
+                navbar.classList.remove('navbar-hidden');
+                navbar.classList.add('navbar-visible');
+                
+                // Añadir efecto de sombra cuando se hace scroll
+                if (scrollTop > 50) {
+                    navbar.classList.add('nav-scrolled');
+                } else {
+                    navbar.classList.remove('nav-scrolled');
+                }
             }
-        }
-        
-        lastScrollTop = scrollTop;
-    });
+            
+            lastScrollTop = scrollTop;
+        });
 
     // Animación para elementos al hacer scroll
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
+     const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
     
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
-        });
-    }, observerOptions);
+  const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
     
     function updateThemeIcon(theme) {
         const icon = themeToggle.querySelector('i');
@@ -311,4 +279,6 @@
 
 
 </body>
+
+
 </html>
